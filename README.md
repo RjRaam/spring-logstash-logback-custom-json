@@ -1,0 +1,1 @@
+# spring-logstash-logback-custom-json
