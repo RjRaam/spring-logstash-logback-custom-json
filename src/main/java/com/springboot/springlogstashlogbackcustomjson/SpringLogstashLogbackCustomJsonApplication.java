@@ -6,6 +6,8 @@ import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.Instant;
+
 
 @SpringBootApplication
 public class SpringLogstashLogbackCustomJsonApplication {
@@ -13,9 +15,15 @@ public class SpringLogstashLogbackCustomJsonApplication {
 
 	public static void main(String[] args) {
 		// MDC not required, just to show how can we add additional MDC level object
-		MDC.put("App-Name", "Logback custom Json App");
 		SpringApplication.run(SpringLogstashLogbackCustomJsonApplication.class, args);
-		logger.info("Application started");
+		try{
+			MDC.putCloseable("App-Name", "Logback custom Json App");
+			MDC.putCloseable("execTime", Instant.now().toString());
+			MDC.putCloseable("other", "Test key exclusion");
+			logger.info("Application started");
+		} finally {
+			MDC.clear();
+		}
 	}
 
 }

@@ -9,28 +9,10 @@
             <totalSizeCap>100MB</totalSizeCap>
         </rollingPolicy>
 
-<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
-<!--            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>-->
-<!--        </encoder>-->
-<!--        <layout class="net.logstash.logback.encoder.LogstashEncoder">-->
-<!--            <jsonFormatter-->
-<!--                    class="net.logstash.logback.decorate.FeatureJsonFactoryDecorator">-->
-<!--                <prettyPrint>true</prettyPrint>-->
-<!--            </jsonFormatter>-->
-<!--            <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>-->
-<!--            <appendLineSeparator>true</appendLineSeparator>-->
-<!--            <includeContextName>false</includeContextName>-->
-<!--        </layout>-->
-
-        <layout class="com.springboot.springlogstashlogbackcustomjson.CustomJsonLayout">
-            <jsonFormatter
-                    class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
-                <prettyPrint>true</prettyPrint>
-            </jsonFormatter>
-            <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
-            <appendLineSeparator>true</appendLineSeparator>
-            <includeContextName>false</includeContextName>
-        </layout>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <excludeMdcKeyName>other</excludeMdcKeyName>
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+        </encoder>
     </appender>
 
     <root level="INFO">
